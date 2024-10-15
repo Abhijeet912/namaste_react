@@ -1,0 +1,38 @@
+{
+  "name": "namaste_react",
+  "version": "1.0.0",
+  "description": "This is namaste react course",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhijeet912/namaste_react.git"
+  },
+  "keywords": [
+    "namaste",
+    "react",
+    "abhijeet"
+  ],
+  "author": "Abhijeet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abhijeet912/namaste_react/issues"
+  },
+  "homepage": "https://github.com/Abhijeet912/namaste_react#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "namaste_react": "file:",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "browserslist": [
+    "last 10 Chrome version",
+    "last 2 firefox version"
+  ]
+}
