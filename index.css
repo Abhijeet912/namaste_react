@@ -22,7 +22,8 @@
     margin: 10px;
 }
 .res-container{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     flex-wrap: wrap;
 }
 .res-card{
@@ -31,6 +32,7 @@
     padding: 5px;
     margin: 10px;
     transition: transform 0.5s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
     
 }
 .res-card:hover{
@@ -45,6 +47,8 @@
     flex-wrap: wrap;
     overflow: hidden;
     word-wrap: break-word;
+    font-weight: 400; /* Normal weight */
+    color: #555;
 }
 
 .search{
@@ -53,9 +57,26 @@
 .res-logo{
     
     width:200px;
-    height:120px;
+    height:150px;
+    border-radius: 15px;
 }
 .filter-btn{
     margin: 10px;
     cursor:pointer;
+}
+
+/*CSS for loader */
+.shimmer-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    flex-wrap: wrap;
+}
+.shimmer-card{
+    background-color: grey !important;
+    height: 300px;
+    width: 200px;
+    border: 2px solid #534e4e;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 15px;
 }

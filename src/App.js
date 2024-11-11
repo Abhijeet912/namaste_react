@@ -23,9 +23,7 @@ import Body from './components/Body';
  */
 
 
-const styleCard={
-	backgroundColor:"#f0f0f0",
-};
+
 
 
 
