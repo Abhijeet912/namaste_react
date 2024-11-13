@@ -6,9 +6,11 @@ import Shimmer from "./Shimmer";
 
 
 const Body =  () => {
+  console.log("Body rendered")
   // Local State Variable - Super powerful variable
   const [listOfRestaurants, setListOfRestraunt] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const[searchText, setSearchText] = useState("");
+  const[filteredRestaurants, setFilteredRestaurant] = useState([]);
   useEffect(()=>{
     fetchData();
   }, []);
@@ -18,9 +20,11 @@ const Body =  () => {
     const json=await data.json();
     console.log(json);
     setListOfRestraunt(json);
-    setFilteredRestaurants(json);
+    setFilteredRestaurant(json);
   };
+  
 
+  //for shimmer
   if(listOfRestaurants.length==0){
      return <Shimmer/>;
   }
@@ -31,6 +35,21 @@ const Body =  () => {
   return (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input type="text" className="search-box" value={searchText} 
+          onChange={(e)=>{
+            setSearchText(e.target.value);
+            
+          }}/>
+          <button onClick={()=>{
+              console.log(searchText);
+
+              const filteredRestaurants=listOfRestaurants.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
+
+              setFilteredRestaurant(filteredRestaurants);
+            }}
+            >Search</button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
@@ -39,7 +58,7 @@ const Body =  () => {
                 return res.info.avgRating > 4;
               }
             );
-            setListOfRestraunt(filteredList);
+            setFilteredRestaurant(filteredList);
           }}
         >
           
@@ -47,7 +66,7 @@ const Body =  () => {
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurants.map((restaurant) => (
+        {filteredRestaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
