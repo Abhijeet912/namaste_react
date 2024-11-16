@@ -16,11 +16,11 @@ const Body =  () => {
   }, []);
 
   const fetchData=async() =>{
-    const data=await fetch("https://mocki.io/v1/14a1d835-ff5b-4286-8de3-28b556914ecd");
+    const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.59080&lng=85.13480&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
     const json=await data.json();
     console.log(json);
-    setListOfRestraunt(json);
-    setFilteredRestaurant(json);
+    setListOfRestraunt(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
   
 
