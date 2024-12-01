@@ -35,6 +35,10 @@
     border-radius: 15px;
     
 }
+.res-container a {
+    text-decoration: none; /* Removes the underline */
+    color: inherit; /* Inherits the color from the parent */
+  }
 .res-card:hover{
     transform: scale(0.95);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -64,6 +68,9 @@
     margin: 10px;
     cursor:pointer;
 }
+.filter-btn:hover {
+    background-color:#897d75;
+  }
 
 /*CSS for loader */
 .shimmer-container{

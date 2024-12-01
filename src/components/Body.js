@@ -3,14 +3,15 @@ import { useState } from "react";
 import { useEffect } from "react";
 import resList from "../utils/mockData";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 
 const Body =  () => {
   console.log("Body rendered")
   // Local State Variable - Super powerful variable
-  const [listOfRestaurants, setListOfRestraunt] = useState([]);
-  const[searchText, setSearchText] = useState("");
-  const[filteredRestaurants, setFilteredRestaurant] = useState([]);
+  const [listOfRestaurants, setListOfRestraunt] = useState([]);    {/**Gets changed when fetchData is called */}
+  const[searchText, setSearchText] = useState("");                {/**Updates when ever content in searchbox is changed */}
+  const[filteredRestaurants, setFilteredRestaurant] = useState([]);  {/**Changes when fetchData is called and when filter btn is clicked */}
   useEffect(()=>{
     fetchData();
   }, []);
@@ -35,6 +36,8 @@ const Body =  () => {
   return (
     <div className="body">
       <div className="filter">
+
+        {/**Search functionality for app */}
         <div className="search">
           <input type="text" className="search-box" value={searchText} 
           onChange={(e)=>{
@@ -46,7 +49,7 @@ const Body =  () => {
 
               const filteredRestaurants=listOfRestaurants.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
 
-              setFilteredRestaurant(filteredRestaurants);
+              setFilteredRestaurant(filteredRestaurants);  {/**Chainging the state FilteredRestaurants */}
             }}
             >Search</button>
         </div>
@@ -67,7 +70,7 @@ const Body =  () => {
       </div>
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link to={"/restaurants/"+restaurant.info.id} key={restaurant.info.id}>< RestaurantCard  resData={restaurant} /></Link>
         ))}
       </div>
     </div>
