@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import resList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 
 const Body =  () => {
@@ -23,12 +24,18 @@ const Body =  () => {
     setListOfRestraunt(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
-  
+  const onlineStatus=useOnlineStatus();
+  if(onlineStatus==false){
+    return <h1>Opps we have encountered an error</h1>
+      
+    
+  }
 
   //for shimmer
   if(listOfRestaurants.length==0){
      return <Shimmer/>;
   }
+  
   
 
 

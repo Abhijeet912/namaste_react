@@ -90,3 +90,49 @@
 .filter{
     display:flex;
 }
+
+.user-profile {
+    display: flex; /* Aligns the image and text horizontally */
+    align-items: center; /* Vertically centers the text with the image */
+    gap: 16px; /* Adds space between the image and text */
+    padding: 16px; /* Optional: Adds padding around the container */
+  }
+  
+  .avatar {
+    width: 100px; /* Sets the size of the avatar */
+    height: 100px; /* Ensures the image is square */
+    border-radius: 50%; /* Makes the image circular */
+    border: 2px solid black; /* Adds a black border around the avatar */
+  }
+  
+  .user-details {
+    display: flex;
+    flex-direction: column; /* Aligns the text vertically */
+    justify-content: center; /* Vertically centers the text within the container */
+  }
+  .status-toggle {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .status-toggle.online {
+    background-color: green;
+  }
+  
+  .status-toggle.offline {
+    background-color: #ff8080; /* Light red background */
+    color: #900;
+  }
+  
+  .status-toggle:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+  
+  .status-toggle:active {
+    transform: scale(0.95); /* Slight press-in effect */
+  }
