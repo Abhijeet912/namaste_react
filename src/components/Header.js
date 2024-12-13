@@ -19,6 +19,7 @@ const Header = () => {
               {onlineStatus ? "Online 🟢" : "Offline 🔴"}
             </button>
         </li>
+        <li><Link to="/Grocery">Grocery</Link></li>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>

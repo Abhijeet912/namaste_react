@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
@@ -7,6 +7,8 @@ import About from './components/About';
 import Error from './components/Error';
 import Contact from './components/Contact';
 import RestaurantMenu from './components/RestaurantMenu';
+import Grocery from './components/Grocery';
+import Shimmer from './components/Shimmer';
 /*Header
  *  -Logo
  *  -Nav Items
@@ -58,7 +60,7 @@ const appRouter=createBrowserRouter([
 		children:[
 			{
 				path:"/",
-				element:<Body/>,
+				element:<Suspense fallback={<Shimmer/>}><Body/></Suspense>,
 			},
 			{
 				path:"/about",
@@ -71,7 +73,12 @@ const appRouter=createBrowserRouter([
 			{
 				path:"/restaurants/:resId",
 				element:<RestaurantMenu/>,
+			},
+			{
+				path:"/grocery",
+				element:<Suspense fallback={<Shimmer/>}><Grocery/></Suspense>,
 			}
+
 		]
 	}
 	
