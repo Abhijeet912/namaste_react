@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard ,{withPromotedLabel}from "./RestaurantCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import resList from "../utils/mockData";
@@ -13,6 +13,9 @@ const Body =  () => {
   const [listOfRestaurants, setListOfRestraunt] = useState([]);    {/**Gets changed when fetchData is called */}
   const[searchText, setSearchText] = useState("");                {/**Updates when ever content in searchbox is changed */}
   const[filteredRestaurants, setFilteredRestaurant] = useState([]);  {/**Changes when fetchData is called and when filter btn is clicked */}
+  
+  const RestaurantCardOpen=withPromotedLabel(RestaurantCard);
+  
   useEffect(()=>{
     fetchData();
   }, []);
@@ -24,6 +27,7 @@ const Body =  () => {
     setListOfRestraunt(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
+  console.log(listOfRestaurants);
   const onlineStatus=useOnlineStatus();
   if(onlineStatus==false){
     return <h1>Opps we have encountered an error</h1>
@@ -42,16 +46,17 @@ const Body =  () => {
 
   return (
     <div className="body">
-      <div className="filter">
+      <div className="flex">
 
         {/**Search functionality for app */}
-        <div className="search">
-          <input type="text" className="search-box" value={searchText} 
+        <div className=""> 
+          <input type="text" className="mb-2 w-sm max-w-sm px-2 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-blue-500" value={searchText} 
           onChange={(e)=>{
             setSearchText(e.target.value);
             
           }}/>
-          <button onClick={()=>{
+          <button  className="px-4 bg-orange-600 m-4 rounded-md transition-transform transform hover:translate-y-1"
+          onClick={()=>{
               console.log(searchText);
 
               const filteredRestaurants=listOfRestaurants.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
@@ -60,8 +65,9 @@ const Body =  () => {
             }}
             >Search</button>
         </div>
+        <div>
         <button
-          className="filter-btn"
+          className="px-4 bg-orange-600 m-4 rounded-md"
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
                func=(res) =>{
@@ -74,10 +80,13 @@ const Body =  () => {
           
           Top Rated Restaurants
         </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex no-underline flex flex-wrap gap-10 mix-blend-soft-light"> {/*Res container */}
         {filteredRestaurants.map((restaurant) => (
-          <Link to={"/restaurants/"+restaurant.info.id} key={restaurant.info.id}>< RestaurantCard  resData={restaurant} /></Link>
+          <Link to={"/restaurants/"+restaurant.info.id} key={restaurant.info.id}>
+            {restaurant.info.isOpen?<RestaurantCardOpen resData={restaurant} />:
+            < RestaurantCard  resData={restaurant} />}</Link>
         ))}
       </div>
     </div>
