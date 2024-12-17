@@ -31,7 +31,7 @@ const RestaurantMenu=()=>{
             
             {/**Accordian Categories */}
             {categories.map((category)=>{
-                return <RestaurantCategory data={category.card?.card}/>
+                return <RestaurantCategory data={category.card?.card} key={category.card?.card?.title}/>
             }
             )}
         </div>
