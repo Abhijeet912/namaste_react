@@ -1,12 +1,11 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory=({data})=>{
-    const[showItems,setShowItems]=useState(false);
+const RestaurantCategory=({data,showItems, setShowIndex})=>{
+    
     const handleClick=()=>{
-        setShowItems(!showItems);
-    };
-
+        setShowIndex();
+    }
     return(
         <div className="bg-slate-50 my-2  container rounded-lg">
             {/**Accordian Header */}
