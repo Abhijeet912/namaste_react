@@ -1,10 +1,11 @@
 import RestaurantCard ,{withPromotedLabel}from "./RestaurantCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import resList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 
 const Body =  () => {
@@ -28,12 +29,16 @@ const Body =  () => {
     setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
   console.log(listOfRestaurants);
+
+
   const onlineStatus=useOnlineStatus();
   if(onlineStatus==false){
     return <h1>Opps we have encountered an error</h1>
       
     
   }
+
+  const {loggedInUser,setUserInfo}=useContext(UserContext);
 
   //for shimmer
   if(listOfRestaurants.length==0){
@@ -80,6 +85,10 @@ const Body =  () => {
           
           Top Rated Restaurants
         </button>
+        </div>
+        <div>
+          <label>UserName:</label>
+          <input className="border border-black p-2" value = {loggedInUser} onChange={(e)=>setUserInfo(e.target.value)}></input>
         </div>
       </div>
       <div className="flex no-underline flex flex-wrap gap-10 mix-blend-soft-light"> {/*Res container */}

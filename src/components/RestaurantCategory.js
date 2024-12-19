@@ -11,7 +11,7 @@ const RestaurantCategory=({data,showItems, setShowIndex})=>{
             {/**Accordian Header */}
             <div className="flex justify-between items-center h-11 px-4 shadow-lg  cursor-pointer" onClick={handleClick}>
                 <span className="text-center text-lg text-slate-950 font-semibold">{data.title}({data.itemCards.length})</span>
-                <span>▼</span>
+                <span>{showItems ? "▲" : "▼"}</span>
                 
             </div>
             {/**Accordian Body */}

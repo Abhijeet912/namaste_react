@@ -33,10 +33,12 @@ const RestaurantMenu=()=>{
             
             {/**Accordian Categories */}
             {categories.map((category,index)=>{
-                return <RestaurantCategory data={category.card?.card} key={category.card?.card?.title} 
+                return <RestaurantCategory data={category.card?.card} 
+                key={category.card?.card?.title} 
                 
-                setShowIndex={() =>setShowIndex(index)}
                 showItems={index==showIndex?true:false}
+                setShowIndex={() =>
+                    index == showIndex ? setShowIndex(null) : setShowIndex(index)}
                 />
             }
             )}

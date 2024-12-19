@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect ,useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import RestaurantMenu from './components/RestaurantMenu';
 import Grocery from './components/Grocery';
 import Shimmer from './components/Shimmer';
+import UserContext from './utils/UserContext.js';
 /*Header
  *  -Logo
  *  -Nav Items
@@ -42,13 +43,28 @@ import Shimmer from './components/Shimmer';
 
 
 const Applayout = () => {
+
+	//auth code written
+
+	const [userInfo,setUserInfo] =useState();
+
+	//auth code api
+	useEffect(()=>{
+		const data={
+			name:"Abhijeet"
+		}
+		setUserInfo(data.name);
+	},[]);
+	
+
 	return(
+		<UserContext.Provider value={{loggedInUser:userInfo,setUserInfo}}>
 		<div className="app">
 			<Header/>
 			<Outlet/>
 
 		</div>
-
+		</UserContext.Provider>
 	);
 };
 
@@ -82,7 +98,9 @@ const appRouter=createBrowserRouter([
 		]
 	}
 	
-]);
+]
+
+);
 
 
 const root=ReactDOM.createRoot(document.getElementById("root"));
