@@ -19,4 +19,10 @@ Format for the App:
  */
 
  # Redux ToolKit
- 
+    -Intall @reduxjs/toolkit and React-Redux
+    -Build Own store
+    -Connect store to app
+    -Create a slice 
+    -dispatch action
+    -read data using selector
+    
